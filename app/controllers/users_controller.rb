@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   def create
   	@user = User.new(user_params)
   	if @user.save
-  		#deal with successful sign up
+      log_in @user
   		flash[:success] = "Welcome to the Faketwitter APP!"
   		redirect_to @user
   	else

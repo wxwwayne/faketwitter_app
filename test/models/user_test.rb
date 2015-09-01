@@ -54,9 +54,17 @@ class UserTest < ActiveSupport::TestCase
   	duplicate_user.email = @user.email.upcase
   	assert_not duplicate_user.valid?
   end
+
   test "password should have a minimum length" do 
     @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
   end
 
+  test "associated microposts shoud be destroyed" do
+    @user.save
+    @user.microposts.create!(content: "Hello")
+    assert_difference 'Micropost.count', -1 do
+      @user.destroy
+    end
+  end
 end

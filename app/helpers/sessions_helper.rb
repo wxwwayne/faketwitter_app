@@ -7,7 +7,7 @@ module SessionsHelper
 	#to remember user in lasting session
 	def remember(user)
 		user.remember #将remember_digest存入数据库
-		#将remember_toke 和id 存入cookie
+		#将remember_token 和id 存入cookie
 		cookies.permanent.signed[:user_id] = user.id
 		cookies.permanent[:remember_token] = user.remember_token
 	end

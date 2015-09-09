@@ -8,20 +8,21 @@ describe User do
 			password: 'foobar')
 	end
 	it "is valid with name, password and email" do
-		expect(@user).to be_valid
+		expect(FactoryGirl.build(:user)).to be_valid
 	end
 	it "is invalid without name" do
-		@user.name = nil 
-		expect(@user).not_to be_valid
-		expect(@user.errors[:name]).to include("can't be blank")
+		user = FactoryGirl.build(:user, name: nil) 
+		expect(user).not_to be_valid
+		expect(user.errors[:name]).to include("can't be blank")
 	end
 	it "is invalid with duplicated email" do
 		User.create(
 			name: "Wayne",
 			email: 'wayne@wang.com',
 			password:'foobar')
-		expect(@user).not_to be_valid
-		expect(@user.errors[:email]).to include("has already been taken")
+		user = FactoryGirl.build(:user, email: "wayne@wang.com")
+		expect(user).not_to be_valid
+		expect(user.errors[:email]).to include("has already been taken")
 	end
 
 	it "is invalid with illigal email address" do

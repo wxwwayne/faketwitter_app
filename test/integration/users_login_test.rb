@@ -37,12 +37,14 @@ end
  	assert_select "a[hreg=?]", user_path(@user), count: 0
  end
  test "login with remembering" do
- 	log_in_as(@user, remember_me: '1')
- 	assert_not_nil cookies['remember_token']
+ 	log_in_as(@user)
+ 	assert_equal assigns[:user].remember_token, cookies['remember_token'] 
+ 	#assert_not_nil cookies['remember_token']
+ 	#assert_not_nil cookies[:remember_token] can not be recognized? why?
  end
  test "login without remembering" do
  	log_in_as(@user,remember_me: '0')
- 	assert_nil cookies['remember_token']
+ 	assert_nil assigns[:user].remember_digest
  end
 
 end

@@ -15,6 +15,7 @@ end
 
   test "should redirect edit when not logged in" do
   	get :edit, id: @user
+    #get edit_user_path(@user) not work! why?
   	assert_redirected_to login_path
   end
 
@@ -25,6 +26,7 @@ end
 
   test "should redirect edit when logged in as wrong user" do
   	log_in_as(@other_user)
+    #get edit_user_path(@user)
   	get :edit, id: @user
   	assert_redirected_to root_path
   end

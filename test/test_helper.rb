@@ -14,7 +14,8 @@ class ActiveSupport::TestCase
   end
   
   def is_logged_in?
-  	!session[:user_id].nil?
+  	#!current_user.nil?
+    !session[:user_id].nil?
   end
 
   def log_in_as(user, options = {})

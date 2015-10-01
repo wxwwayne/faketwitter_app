@@ -31,6 +31,9 @@ class User < ActiveRecord::Base
     end
 
     #to memeorize user in db for session
+    #this is a instance method invoked by user.remember~~~
+    #do not get confused with the helper remember() method!
+    #by the way remember(user) = remember user~~~
     def remember
     	self.remember_token = User.new_token
     	update_attribute(:remember_digest, User.digest(remember_token))

@@ -32,4 +32,14 @@ class UsersEditTest < ActionDispatch::IntegrationTest
   	assert_equal @user.name, name
   	assert_equal @user.email, email
   end
+
+  test "friendly forwarding will work only once" do 
+    get edit_user_path(@user)
+    assert_redirected_to login_path
+    log_in_as(@user)
+    assert_redirected_to edit_user_path(@user)
+    log_out(@user)
+    log_in_as(@user)
+    assert_redirected_to @user
+  end
 end

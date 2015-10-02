@@ -57,6 +57,15 @@ end
     assert_redirected_to root_path  
   end
 
+  test "should not allow editing admin attrinute" do 
+    log_in_as(@other_user)
+    assert_not @other_user.admin?
+    patch :update, id: @user, user: {password: "password",
+                                    password_confirmation: "password",
+                                    admin: true} 
+    assert_not @other_user.reload.admin?
+  end
+
   test "should redirect following when not logged in" do
     get :following, id: @user
     assert_redirected_to login_path

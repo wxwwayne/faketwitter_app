@@ -25,17 +25,24 @@ class ActiveSupport::TestCase
   		post login_path, session: { email: user.email,
   									password: password,
   									remember_me: remember_me}
-	else
-		session[:user_id] = user.id
-	end
+	  else
+		  session[:user_id] = user.id
+	  end
+  end
 
+   def log_out(user)
+    if integration_test?
+      delete logout_path
+    else 
+      session[:user_id] = nil
+    end
+  end
 
   # Add more helper methods to be used by all tests here...
-end
 
-private
+  private
 
-	def integration_test?
-		defined?(post_via_redirect)
-	end
+	 def integration_test?
+		  defined?(post_via_redirect)
+	 end
 end

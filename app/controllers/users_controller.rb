@@ -5,6 +5,10 @@ class UsersController < ApplicationController
   before_action :admin_user, only: [:destroy]
   def show
   	@user = User.find(params[:id])
+    if !@user.activated?
+      flash[:warning] = "This account is not activated yet!"
+      redirect_to root_path
+    end
     @microposts = @user.microposts.paginate(page: params[:page])
   end	
 
@@ -24,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.where(activated: true).paginate(page: params[:page])
   end
 
   def edit

@@ -6,18 +6,16 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
   	@user = users(:michael)
   end
 
-  test "invalid email address" do 
+  test "password reset" do
   	get new_password_reset_path
   	assert_template 'password_resets/new'
-  	post password_resets_path, password_reset: {email: "invalid"}
-  	assert_not flash.empty?
-  	assert_template 'password_resets/new'
-  end
-
-  test "valid email address" do
-  	get new_password_reset_path
-  	assert_template 'password_resets/new'
-  	post password_resets_path, password_reset: {email: @user.email}
+    #email not match registered email
+    post password_resets_path, password_reset: { email: "invalid" }
+    assert_template 'password_resets/new'
+    assert_not flash.empty?
+    assert @user.reset_digest.nil?
+    #valid email
+  	post password_resets_path, password_reset: { email: @user.email }
   	assert_not @user.reload.reset_digest.nil?
   	assert_equal 1, ActionMailer::Base.deliveries.size
   	assert_not flash.empty?
@@ -38,8 +36,9 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
   	#rignt roken and right email
   	get edit_password_reset_path(user.reset_token, email: user.email)
   	assert_template 'password_resets/edit'
+    #find the hidden tag
   	assert_select "input[name=email][type=hidden][value=?]", user.email
-  	#password and confirmation dont match
+  	#password and confirmation don't match
   	patch password_reset_path(user.reset_token),
   						email: user.email,
   						user: {password: "foobar",
@@ -49,7 +48,7 @@ class PasswordResetsTest < ActionDispatch::IntegrationTest
   	patch password_reset_path(user.reset_token),
   						email: user.email,
   						user: { password: " ",
-  								password_confirmation: "foobar" }
+  								password_confirmation: "whatever" }
   	assert_not flash.empty?
   	assert_template 'password_resets/edit'
   	#everything is right

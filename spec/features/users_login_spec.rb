@@ -16,7 +16,7 @@ feature 'User Login Logout' do
 		user = FactoryGirl.create(:user)
 		visit root_path
 		click_link 'Log in'
-		fill_in 'Email', with: 'wayne1@wang.com'
+		fill_in 'Email', with: user.email
 		fill_in 'Password', with: 'foobar'
 		check "Remember me"
 		click_button 'Log in'

@@ -8,8 +8,12 @@ FactoryGirl.define do
 		activated true
 		activated_at Time.zone.now
 
-		factory :invalid_contact do 
+		factory :invalid_user do 
 			email nil
+		end
+
+		factory :admin do
+			admin true
 		end
 
 		factory :wayne do 

@@ -2,13 +2,14 @@ require 'rails_helper'
 describe UsersController do
 	shared_examples 'public access' do
 		describe 'GET #show' do
+			let(:user) do
+				create(:user)
+			end
 			it "assigns the requested user to @user" do
-    			user = create(:user)
     			get :show, id: user
     			expect(assigns(:user)).to eq user
 			end
 			it "renders the :show template" do 
-				user = create(:user)
 				get :show, id: user
 				expect(response).to render_template :show
 			end
@@ -20,7 +21,8 @@ describe UsersController do
 				get :new
 				expect(assigns(:user)).to be_a_new(User) 
 			end
-			it "renders the :new template" do 
+			it "renders the :new template" do
+				#pending "not necessary" 
 				get :new
 				expect(response).to render_template :new 
 			end
@@ -80,6 +82,7 @@ describe UsersController do
  			@user = create(:wayne)
  			log_in_as(@user)
  		end
+
  		it_behaves_like 'public access'
  		it_behaves_like 'user access'
  		it_behaves_like 'admin access'

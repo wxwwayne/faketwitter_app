@@ -13,11 +13,25 @@ feature 'User Login Logout' do
 		expect(page).to have_content 'Invalid email/password combination'
 	end
 
-	scenario "Log in user", js: true do
+	scenario "log in user", js: true do
 		user = create(:user)
 		sign_in_with_remember(user)
 		expect(current_path).to eq user_path(user)
 		expect(page).to have_content user.name	
 	end
+
+	# scenario "log out user", js: true do
+	# 	user = create(:user)
+	# 	sign_in_with_remember(user)
+	# 	expect(current_path).to eq user_path(user)
+	# 	find('.dropdown-menu').click_link "Log out"
+	# 	#page.find(:xpath, "//a[href='/logout']").click
+	# 	#select("Log out", :from => "Account").click
+	# 	#click_link 'Log out'
+	# 	expect(current_path).to eq root_path
+	# 	expect(page).to have_content "Log in"
+	# 	expect(:session).to eq nil
+	# end
+
 end
 		

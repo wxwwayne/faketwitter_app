@@ -1,7 +1,11 @@
 FactoryGirl.define do
 	factory :micropost do
-		sequence(:content) {|n| "This is the No.#{n} micropost"}
-		created_at 10.minutes.ago 
-		#user
+		content Faker::Lorem.sentence(2)
+		created_at Time.zone.now
+		user 
+
+		factory :invalid_micropost do
+			content nil
+		end
 	end
 end

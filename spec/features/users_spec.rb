@@ -2,8 +2,10 @@ require 'rails_helper'
 
 feature 'User create' do
 	scenario "adds a new user", js: true do
-    user = build(:user)
+      user = build(:user)
+      mail = UserMailer.account_activation(user)
     	expect{sign_up(user)}.to change(User, :count).by(1)
+      check_account_activation_email(user)
     	expect(current_path).to eq root_path
     	expect(page).to have_content 'Please check your email to activate your account.'
     end

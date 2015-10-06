@@ -23,6 +23,7 @@ group :development, :test do
 	gem 'spring', '1.1.3'
     gem 'rspec-rails', '~>3.1.0'
     gem 'factory_girl_rails', '~>4.4.1'
+    gem 'guard-rspec'
 end
 
 group :test do
@@ -34,6 +35,8 @@ group :test do
     gem "launchy", "~> 2.4.2"
     gem "selenium-webdriver", "~> 2.47.0"
     gem "shoulda-matchers", "~> 2.6.2"
+    gem 'guard-rspec'
+    gem 'email_spec'
  end
 
 group :production do

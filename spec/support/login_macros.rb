@@ -29,4 +29,10 @@ module LoginMacros
 		fill_in 'Password', with: user.password
 		click_button 'Log in'
 	end
+	def log_out
+		find('.dropdown-toggle').click
+		find(:xpath,"/html/body/header[@class='navbar navbar-fixed-top navbar-inverse']/div[@class='container']/nav/ul[@class='nav navbar-nav navbar-right']/li[@class='dropdown open']/ul[@class='dropdown-menu']/li[4]/a").click
+		#find('[rel=nofollow][data-method=delete]').click
+		#find('html div ul li:nth-child(4) ul li:nth-child(4) a').click
+	end
 end

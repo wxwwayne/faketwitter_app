@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User create' do
+feature 'Users management' do
 	scenario "adds a new user", js: true do
       user = build(:user)
     	expect{sign_up(user)}.to change(User, :count).by(1)

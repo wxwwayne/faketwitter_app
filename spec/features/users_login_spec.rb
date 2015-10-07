@@ -20,15 +20,13 @@ feature 'User Login Logout' do
 		sign_in_with_remember(user)
 		expect(current_path).to eq user_path(user)
 		expect(page).to have_content user.name	
-		#expect(page).to have_link('Log out', href: logout_path)
 	end
 
 	scenario "log out user", js: true do
 		user = create(:user)
 		sign_in_with_remember(user)
 		expect(current_path).to eq user_path(user)
-		find('.dropdown-toggle').click
-		find('[rel=nofollow]').click
+		log_out
 		expect(current_path).to eq root_path
 		expect(page).to have_content "Log in"
 		#expect(session[:user_id]).to eq nil

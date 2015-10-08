@@ -25,8 +25,6 @@ feature "Microposts management" do
 		log_out
 		sign_in_without_remember(other_user)
 		visit_home_page
-		#click_link "Home"
-		#expect(page).to have_content micropost.content
 		expect(page).not_to have_link "delete"
 	end
 end

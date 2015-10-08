@@ -22,14 +22,13 @@ feature 'User Login Logout' do
 		expect(page).to have_content user.name	
 	end
 
-	scenario "log out user", js: true, focus: true do
+	scenario "log out user", js: true do
 		user = create(:user)
 		sign_in_with_remember(user)
 		expect(current_path).to eq user_path(user)
 		log_out
 		expect(current_path).to eq root_path
 		expect(page).to have_content "Log in"
-		#expect(session[:user_id]).to eq nil
 	end
 
 end

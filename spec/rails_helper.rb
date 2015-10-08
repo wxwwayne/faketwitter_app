@@ -33,7 +33,7 @@ RSpec.configure do |config|
   config.include LoginMacros
   config.include MicropostMacros
   config.include PageMacros
-  config.filter_run focus: true
+  #config.filter_run focus: true
   config.include FactoryGirl::Syntax::Methods
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

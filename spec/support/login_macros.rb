@@ -1,4 +1,5 @@
 module LoginMacros
+	#for controller spec
 	def log_in_as(user)
 		session[:user_id] = user.id 
 	end

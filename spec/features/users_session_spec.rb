@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'User Login Logout' do
+feature 'User session' do
 	scenario "fail to log in user", js: true do
 		user = create(:user)
 		visit root_path

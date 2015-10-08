@@ -26,13 +26,16 @@ ActiveRecord::Migration.maintain_test_schema!
 
 
 RSpec.configure do |config|
+  #macros config
   config.include MailerMacros
   config.before(:each) do
     reset_email
   end
+  config.include RelationshipMacros
   config.include LoginMacros
   config.include MicropostMacros
   config.include PageMacros
+
   #config.filter_run focus: true
   config.include FactoryGirl::Syntax::Methods
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

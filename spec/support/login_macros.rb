@@ -33,7 +33,5 @@ module LoginMacros
 	def log_out
 		find('.dropdown-toggle').click
 		find(:xpath,"//ul[@class='dropdown-menu']/li[4]/a").click
-		#find('[rel=nofollow][data-method=delete]').click
-		#find('html div ul li:nth-child(4) ul li:nth-child(4) a').click
 	end
 end

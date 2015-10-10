@@ -15,6 +15,15 @@ feature 'Users management' do
     	expect(current_path).to eq users_path
     end
 
+    scenario "update user profile", js: true do
+      user = create(:user)
+      new_profile = build(:user)
+      sign_in_without_remember(user)
+      update_profile(new_profile)
+      expect(page).to have_content "Profile updated"
+      expect(page).to have_content new_profile.name
+    end
+
     scenario "delete a user", js: true do
       admin = create(:admin)
       user = create(:user)

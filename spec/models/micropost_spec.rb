@@ -3,18 +3,21 @@ require 'rails_helper'
 describe Micropost do
 	before { @user = create(:user) }
 
-	it "is valid with content and user_id" do
-		micropost = build(:micropost, user: @user)
-		expect(micropost).to be_valid
-	end	
-	it "is invalid with no content" do
-		micropost = build(:invalid_micropost, user: @user)
-		expect(micropost).not_to be_valid
+	describe "microposts attributes" do
+		it "is valid with content and user_id" do
+			micropost = build(:micropost, user: @user)
+			expect(micropost).to be_valid
+		end	
+		it "is invalid with no content" do
+			micropost = build(:invalid_micropost, user: @user)
+			expect(micropost).not_to be_valid
+		end
+		it "is invalid with no user_id" do
+			micropost = build(:micropost, user: nil)
+			expect(micropost).not_to be_valid
+		end
 	end
-	it "is invalid with no user_id" do
-		micropost = build(:micropost, user: nil)
-		expect(micropost).not_to be_valid
-	end
+	
 	describe "microposts order and dependence" do
 		let(:old_post) do
 			create(:micropost, created_at: 1.day.ago, user: @user)

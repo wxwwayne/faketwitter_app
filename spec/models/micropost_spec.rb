@@ -26,10 +26,11 @@ describe Micropost do
 			create(:micropost, created_at: 1.minute.ago, user: @user)
 		end 
 
-		it "has the microposts in order" do
+		it "is ordered in most-recent-first-order" do
 			expect(@user.microposts).to eq [new_post,old_post]
 		end
-		it "deletes all microposts if delete user" do
+
+		it "is deleted if the user is deleted" do
 			id1 = old_post.id
 			id2 = new_post.id
 			@user.destroy

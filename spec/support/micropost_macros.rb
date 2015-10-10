@@ -5,7 +5,7 @@ module MicropostMacros
 		click_button "Post"
 	end
 
-	def delete_the_micropost_in_profile_page	
+	def delete_the_micropost	
 		visit_profile_page	
 		click_link("delete")
 		page.driver.browser.switch_to.alert.accept

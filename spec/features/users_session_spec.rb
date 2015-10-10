@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'User session' do
-	scenario "fail to log in user", js: true do
+	scenario "will fail to log in user", js: true do
 		user = create(:user)
 		visit root_path
 		click_link 'Log in'
@@ -15,14 +15,14 @@ feature 'User session' do
 		expect(page).not_to have_content 'Invalid email/password combination'
 	end
 
-	scenario "log in user", js: true do
+	scenario "will log in user", js: true do
 		user = create(:user)
 		sign_in_with_remember(user)
 		expect(current_path).to eq user_path(user)
 		expect(page).to have_content user.name	
 	end
 
-	scenario "log out user", js: true do
+	scenario "will log out user", js: true do
 		user = create(:user)
 		sign_in_with_remember(user)
 		expect(current_path).to eq user_path(user)

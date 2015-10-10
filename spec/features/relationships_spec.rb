@@ -6,7 +6,7 @@ feature 'Relationship' do
 	let(:wayne_post) { create(:micropost, user: wayne) }
 	let(:lizz_post) { create(:micropost, user: lizz) }
 	
-	scenario '#follow', js: true do
+	scenario 'will follow other user', js: true do
 		sign_in_without_remember(wayne)
 		find_one_to_follow(lizz)
 		expect(page).to have_button "Follow"
@@ -14,7 +14,7 @@ feature 'Relationship' do
 		find_following_post_in_feed(lizz_post)
 	end
 
-	scenario '#unfollow', js: true do
+	scenario 'will unfollow other user', js: true do
 		sign_in_without_remember(wayne)
 		find_one_to_follow(lizz)
 		click_button "Follow"

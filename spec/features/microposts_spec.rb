@@ -2,9 +2,9 @@ require 'rails_helper'
 
 feature "Microposts management" do 
 	let(:user) { create(:user) }
-	let(:other_user) {create(:user)}
-	let(:micropost) {build(:micropost, user: user)}
-	before {sign_in_without_remember(user)}
+	let(:other_user) { create(:user) }
+	let(:micropost) { build(:micropost, user: user) }
+	before { sign_in_without_remember(user) }
 
 	scenario "will make a new micropost", js: true do
 		expect{ create_a_micropost(micropost) }.to change(Micropost, :count).by(1)

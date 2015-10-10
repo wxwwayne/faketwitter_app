@@ -22,4 +22,11 @@ module PageMacros
 		find(:xpath,"//ul[@class='dropdown-menu']/li[4]/a").click
 	end
 
+	def click_log_in
+		find(:xpath, "//ul[@class='nav navbar-nav navbar-right']/li[3]/a").click		
+	end
+
+	def click_sign_up
+		find(:xpath, "//a[@class='btn btn-lg btn-primary']").click
+	end
 end

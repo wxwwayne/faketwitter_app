@@ -13,14 +13,14 @@ module LoginMacros
 
 	def sign_up(user)
 		visit root_path
-		click_link 'Sign up now!'
+		click_sign_up
 		fill_in_form_with(user)
       	click_button 'Create my account'
 	end
 
 	def sign_in_with_remember(user)
 		visit root_path
-		click_link 'Log in'
+		click_log_in
 		fill_in 'Email', with: user.email
 		fill_in 'Password', with: user.password
 		check "Remember me"

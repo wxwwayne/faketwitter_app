@@ -1,6 +1,7 @@
 module RelationshipMacros
 	def follow_show_different_stat(user)
 		click_button "Follow"
+		visit_profile_page
 		expect(user.following.count).to eq 1
 	end
 

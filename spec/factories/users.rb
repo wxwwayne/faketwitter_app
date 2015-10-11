@@ -15,6 +15,10 @@ FactoryGirl.define do
 			admin true
 		end
 
+		factory :unactivated_user do
+			activated false
+		end
+
 		factory :wayne do 
 			name "Wayne Wang"
 			email "wayne@wang.com"

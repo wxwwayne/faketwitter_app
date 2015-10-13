@@ -6,7 +6,6 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
   end
   test "microposts interface" do
   	log_in_as(@user)
-  	#assert_template 'users/show'
   	get root_path
   	assert_select 'div.pagination'
   	#failure post

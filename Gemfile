@@ -15,11 +15,14 @@ gem 'jquery-rails', '4.0.3'
 gem 'turbolinks', '2.3.0'
 gem 'jbuilder', '2.2.3'
 gem 'sdoc', '0.4.0', group: :doc
+gem 'active_model_serializers', '0.8.3'
+gem 'responders', '~> 2.0'
+gem 'active_hash_relation'
 
 group :development, :test do
 	gem 'sqlite3', '1.3.9'
 	gem 'byebug', '3.4.0'
-	gem 'web-console', '2.0.0.beta3' 
+	gem 'web-console', '2.0.0.beta3'
 	gem 'spring', '1.1.3'
     gem 'rspec-rails', '~>3.1.0'
     gem 'factory_girl_rails', '~>4.4.1'

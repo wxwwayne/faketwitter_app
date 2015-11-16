@@ -36,6 +36,9 @@ RSpec.configure do |config|
   config.include MicropostMacros
   config.include PageMacros
 
+  #helpers
+  config.include Request::JsonHelpers, :type => :controller
+
   #config.filter_run focus: true
   config.include FactoryGirl::Syntax::Methods
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
@@ -46,13 +49,13 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = false
 
-  config.before(:suite) do 
+  config.before(:suite) do
       DatabaseCleaner.strategy = :truncation
   end
-  config.before(:each) do 
+  config.before(:each) do
     DatabaseCleaner.start
   end
-  config.after(:each) do 
+  config.after(:each) do
     DatabaseCleaner.clean
   end
 

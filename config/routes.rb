@@ -17,6 +17,14 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:new, :edit, :create, :update ]
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
+
+  #API
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: [:index, :create, :update, :destroy, :show]
+      resources :microposts, only: [:index, :create, :update, :destroy, :show]
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

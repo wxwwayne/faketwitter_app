@@ -1,6 +1,6 @@
 class Api::V1::UserSerializer < Api::V1::BaseSerializer
   embed :ids
-  attributes :id, :email, :name
+  attributes :id, :email, :name, :authentication_token
 
   has_many :microposts
   has_many :following

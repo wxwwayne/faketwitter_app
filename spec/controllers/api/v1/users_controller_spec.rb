@@ -4,6 +4,8 @@ describe Api::V1::UsersController do
   describe "GET #show" do
     before :each do
       @user = create(:user)
+      request.headers['Authorization'] = "Token token=\"#{@user.authentication_token}\", email=\"#{@user.email}\""
+      # header('Authorization', "Token token=\"#{user.authentication_token}\", email=\"#{user.email}\"")
       get :show, id: @user
     end
 

@@ -18,6 +18,9 @@ gem 'sdoc', '0.4.0', group: :doc
 gem 'active_model_serializers', '0.8.3'
 gem 'responders', '~> 2.0'
 gem 'active_hash_relation'
+gem 'pundit'
+gem 'kaminari'
+gem 'redis-throttle', git: 'git://github.com/andreareginato/redis-throttle.git'
 
 group :development, :test do
 	gem 'sqlite3', '1.3.9'

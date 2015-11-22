@@ -9,10 +9,10 @@ feature 'Users management' do
     	expect(page).to have_content 'Please check your email to activate your account.'
     end
 
-    scenario "will fail to add a new user", js: true do 
+    scenario "will fail to add a new user", js: true do
       invalid_user = build(:invalid_user)
     	expect{ sign_up(invalid_user) }.to change(User, :count).by(0)
-    	expect(current_path).to eq users_path
+    	expect(current_path).to eq signup_path
     end
 
     scenario "will update user profile", js: true do

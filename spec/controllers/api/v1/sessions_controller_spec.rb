@@ -1,5 +1,5 @@
-require 'rails_helper'
+# require 'rails_helper'
 
-RSpec.describe Api::V1::SessionsController, :type => :controller do
+# RSpec.describe Api::V1::SessionsController, :type => :controller do
 
-end
+# end

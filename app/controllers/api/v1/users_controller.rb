@@ -38,7 +38,20 @@ class Api::V1::UsersController < Api::V1::BaseController
 
   def update
     user = User.find(params[:id])
+    authorize user
+    if user.update(user_params)
+      render json: user, serializer: Api::V1::UserSerializer,
+        status: 200, location: api_v1_user_path(user.id)
+    else
+      render json: { errors: user.errors }, status: 422
+    end
+  end
 
+  def destroy
+    user = User.find(params[:id])
+    authorize user
+    user.destroy
+    head 204
   end
 end
 

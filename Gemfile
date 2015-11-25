@@ -21,6 +21,7 @@ gem 'active_hash_relation'
 gem 'pundit'
 gem 'kaminari'
 gem 'redis-throttle', git: 'git://github.com/andreareginato/redis-throttle.git'
+gem 'rspec-api_helpers', github: 'kollegorna/rspec-api_helpers'
 
 group :development, :test do
 	gem 'sqlite3', '1.3.9'

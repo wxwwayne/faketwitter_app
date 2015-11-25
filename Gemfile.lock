@@ -10,6 +10,12 @@ GIT
       redis
       redis-namespace
 
+GIT
+  remote: git://github.com/kollegorna/rspec-api_helpers.git
+  revision: 4438227015cc1112bcc2bb37b2ca621dbfccc6a6
+  specs:
+    rspec-api_helpers (0.0.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -356,6 +362,7 @@ DEPENDENCIES
   rails_12factor (= 0.0.2)
   redis-throttle!
   responders (~> 2.0)
+  rspec-api_helpers!
   rspec-rails (~> 3.1.0)
   sass-rails (= 5.0.2)
   sdoc (= 0.4.0)

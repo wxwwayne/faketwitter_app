@@ -38,6 +38,8 @@ RSpec.configure do |config|
 
   #helpers
   config.include Request::JsonHelpers, :type => :controller
+  config.include AuthenticationHelper
+  config.include Rspec::ApiHelpers, type: :api
 
   #config.filter_run focus: true
   config.include FactoryGirl::Syntax::Methods
@@ -50,7 +52,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
 
   config.before(:suite) do
-      DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.strategy = :truncation
   end
   config.before(:each) do
     DatabaseCleaner.start

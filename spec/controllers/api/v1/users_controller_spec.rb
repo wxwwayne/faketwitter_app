@@ -4,7 +4,7 @@ describe Api::V1::UsersController do
   describe "GET #show" do
     before :each do
       @user = create(:user)
-      request.headers['Authorization'] = "Token token=\"#{@user.authentication_token}\", email=\"#{@user.email}\""
+      sign_in_as(@user)
       get :show, id: @user
     end
 
@@ -40,7 +40,7 @@ describe Api::V1::UsersController do
       before :each do
         @user = create(:user)
         @new_attribute = attributes_for(:user)
-        request.headers['Authorization'] = "Token token=\"#{@user.authentication_token}\", email=\"#{@user.email}\""
+        sign_in_as(@user)
         put :update, id: @user, user: @new_attribute
       end
       it "updates the database" do
@@ -55,7 +55,7 @@ describe Api::V1::UsersController do
         @user = create(:user)
         @admin = create(:admin)
         @new_attribute = attributes_for(:user)
-        request.headers['Authorization'] = "Token token=\"#{@admin.authentication_token}\", email=\"#{@admin.email}\""
+        sign_in_as @admin
         put :update, id: @user, user: @new_attribute
       end
       it "updates the database" do
@@ -69,7 +69,7 @@ describe Api::V1::UsersController do
       before :each do
         @user = create(:user)
         @new_attribute = attributes_for(:invalid_user)
-        request.headers['Authorization'] = "Token token=\"#{@user.authentication_token}\", email=\"#{@user.email}\""
+        sign_in_as @user
         put :update, id: @user, user: @new_attribute
       end
       it "renders errors json_response" do
@@ -88,7 +88,7 @@ describe Api::V1::UsersController do
     context 'user cancel the account' do
       before :each do
         @user = create(:user)
-        request.headers['Authorization'] = "Token token=\"#{@user.authentication_token}\", email=\"#{@user.email}\""
+        sign_in_as @user
         delete :destroy, id: @user
       end
       it { should respond_with 204 }
@@ -98,7 +98,7 @@ describe Api::V1::UsersController do
       before :each do
         @user = create(:user)
         @admin = create(:admin)
-        request.headers['Authorization'] = "Token token=\"#{@admin.authentication_token}\", email=\"#{@admin.email}\""
+        sign_in_as @admin
         delete :destroy, id: @user
       end
       it { should respond_with 204 }

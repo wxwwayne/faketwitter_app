@@ -23,7 +23,7 @@ class Api::V1::UsersController < Api::V1::BaseController
               { per_page: params[:per_page],
                 total_pages: users.total_pages,
                 total_objects: users.total_count } }
-      end
+  end
 
   def create
     user = User.new(user_params)

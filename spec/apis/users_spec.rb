@@ -15,8 +15,9 @@ describe Api::V1::UsersController, type: :api do
 
   context :create do
     before do
-      @user = attributes_for(:user)
-      post api_v1_users_path, user: @user, format: :json
+      #create_and_sign_in_user
+      @user = FactoryGirl.attributes_for(:user)
+      post api_v1_users_path, user: @user.as_json, format: :json
     end
 
     it_returns_status(201)
@@ -24,12 +25,20 @@ describe Api::V1::UsersController, type: :api do
     it_returns_attributes(resource: 'user', model: '@user', only: [
       :email, :name
     ])
+
+    it_returns_more_attributes(
+      resource: 'user',
+      model: 'User.last!',
+      only: [:updated_at, :created_at],
+      modifier: 'iso8601'
+    )
   end
 
   context :show do
     before do
       create_and_sign_in_user
-      @user = create(:user)
+      FactoryGirl.create(:user)
+      @user = User.last!
 
       get api_v1_user_path(@user.id), format: :json
     end
@@ -39,6 +48,13 @@ describe Api::V1::UsersController, type: :api do
     it_returns_attributes(resource: 'user', model: '@user', only: [
       :email, :name, :id, :authentication_token
     ])
+
+    it_returns_more_attributes(
+      resource: 'user',
+      model: '@user',
+      only: [:updated_at, :created_at],
+      modifier: 'iso8601'
+    )
   end
 
 
@@ -54,8 +70,16 @@ describe Api::V1::UsersController, type: :api do
     it_returns_status(200)
 
     it_returns_attributes(resource: 'user', model: '@user', only: [
-      :email, :name, :id
+      :email, :name, :authentication_token, :id
     ])
+
+    it_returns_more_attributes(
+      resource: 'user',
+      model: '@user',
+      only: [:updated_at, :created_at],
+      modifier: 'iso8601'
+    )
+
     it_includes_in_headers({Location: 'api_v1_user_path(@user.id)'})
   end
 

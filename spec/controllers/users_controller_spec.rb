@@ -9,7 +9,7 @@ describe UsersController do
     			get :show, id: user
     			expect(assigns(:user)).to eq user
 			end
-			it "renders the :show template" do 
+			it "renders the :show template" do
 				get :show, id: user
 				expect(response).to render_template :show
 			end
@@ -19,24 +19,24 @@ describe UsersController do
  		describe 'GET #new' do
 			it "assigns a new User to @user" do
 				get :new
-				expect(assigns(:user)).to be_a_new(User) 
+				expect(assigns(:user)).to be_a_new(User)
 			end
 			it "renders the :new template" do
-				#pending "not necessary" 
+				#pending "not necessary"
 				get :new
-				expect(response).to render_template :new 
+				expect(response).to render_template :new
 			end
-		end 
+		end
 	end
 
 	shared_examples 'user access' do
-	 	describe 'PATCH #update' do 
+	 	describe 'PATCH #update' do
 	 		context "valid attribute" do
-	 			it "locates the requested @user" do 
+	 			it "locates the requested @user" do
 	 				patch :update, id: @user, user: attributes_for(:user)
 	 				expect(assigns(:user)).to eq(@user)
 	 			end
-	 			it "updates the @user's attribute" do 
+	 			it "updates the @user's attribute" do
 	 				patch :update, id: @user, user: attributes_for(:user,
 	 										name: "After Update",
 	 										email: "after@update.com")
@@ -50,16 +50,16 @@ describe UsersController do
 	 			end
 	 		end
 
-	 		context "invalid attribute" do 
+	 		context "invalid attribute" do
 	 			it "doesn't update attributes" do
-	 				patch :update, id: @user, 
+	 				patch :update, id: @user,
 	 							user: attributes_for(:invalid_user)
 	 				expect(@user.name).to eq 'Wayne Wang'
 	 				expect(@user.email).to eq "wayne@wang.com"
 	 			end
 	 		end
 	  	end
-	  	describe 'GET #index' do 
+	  	describe 'GET #index' do
 	  		it "gets all users in index" do
 		  		user_one = create(:user)
 		  		get :index
@@ -68,8 +68,8 @@ describe UsersController do
 	  	end
   	end
   	shared_examples 'admin access' do
-	 	describe "DELETE #destroy" do 
-	 		it "delete the @user" do 
+	 	describe "DELETE #destroy" do
+	 		it "delete the @user" do
 	 			expect{
 	 				delete :destroy, id: @user
 	 			}.to change(User, :count).by (-1)
@@ -78,7 +78,7 @@ describe UsersController do
  	end
 
  	describe 'admin access to controller' do
- 		before :each do 
+ 		before :each do
  			@user = create(:wayne)
  			log_in_as(@user)
  		end

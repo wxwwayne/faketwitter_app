@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "Microposts management" do 
+feature "Microposts management" do
 	let(:user) { create(:user) }
 	let(:other_user) { create(:user) }
 	let(:micropost) { build(:micropost, user: user) }

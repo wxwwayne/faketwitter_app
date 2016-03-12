@@ -58,23 +58,23 @@ describe UsersController do
 	 				expect(@user.email).to eq "wayne@wang.com"
 	 			end
 	 		end
-	  	end
-	  	describe 'GET #index' do
-	  		it "gets all users in index" do
-		  		user_one = create(:user)
+	  end
+	  describe 'GET #index' do
+	 		it "gets all users in index" do
+	  		user_one = create(:user)
 		  		get :index
 		  		expect(assigns[:users]).to eq [@user, user_one]
-		  	end
-	  	end
-  	end
-  	shared_examples 'admin access' do
-	 	describe "DELETE #destroy" do
-	 		it "delete the @user" do
+		  end
+	  end
+  end
+  shared_examples 'admin access' do
+	 describe "DELETE #destroy" do
+	 	it "delete the @user" do
 	 			expect{
 	 				delete :destroy, id: @user
 	 			}.to change(User, :count).by (-1)
-	 		end
 	 	end
+	 end
  	end
 
  	describe 'admin access to controller' do

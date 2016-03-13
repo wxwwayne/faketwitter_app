@@ -20,7 +20,7 @@ feature "Microposts management" do
 		expect(page).to have_content "Micropost deleted!"
 	end
 
-	scenario "will view but not be allowed to delete others' micropost", js: true do
+	scenario "will view but not be allowed to delete others' micropost", js: true, slow: true do
 		create_a_micropost(micropost)
 		log_out
 		sign_in_without_remember(other_user)
